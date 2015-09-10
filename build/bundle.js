@@ -55,6 +55,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
+	function _defaultProps(defaultProps, props) { if (defaultProps) { for (var propName in defaultProps) { if (typeof props[propName] === 'undefined') { props[propName] = defaultProps[propName]; } } } return props; }
+
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -63,10 +65,24 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var StatelessComponent = function StatelessComponent(_ref) {
+	  var text = _ref.text;
+	  return {
+	    type: 'div',
+	    ref: null,
+	    props: {
+	      children: text
+	    },
+	    key: null
+	  };
+	};
+
 	_reactDom2['default'].render({
-	  type: 'input',
+	  type: StatelessComponent,
 	  ref: null,
-	  props: {},
+	  props: _defaultProps(StatelessComponent.defaultProps, {
+	    text: 'aww yeah'
+	  }),
 	  key: null
 	}, document.getElementById('root'));
 
