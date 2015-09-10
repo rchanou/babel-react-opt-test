@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 
-var config = {
+const config = {
   entry: [
     path.join(__dirname, 'src', 'index')
   ],
@@ -22,7 +22,10 @@ var config = {
       {
         test: /\.jsx?$/,
         //loader: 'babel?{ "stage": 0 }',
-        loader: 'babel?{ "stage": 0, "optional": ["optimisation.react.inlineElements"] }',
+        loader: `babel?{
+          "stage": 0,
+          "optional": ["optimisation.react.inlineElements"]
+        }`,
         include: path.join(__dirname, 'src')
       }
     ]
@@ -30,14 +33,14 @@ var config = {
 };
 
 
-var compiler = webpack(config);
+const compiler = webpack(config);
 
 console.log('Starting file-watching and build process. Press Ctrl+C to exit.');
 
-compiler.watch(333, function(err, stats){
+compiler.watch(333, (err, stats) => {
   if (stats){
     if (stats.hasErrors()){
-      stats.toJson().errors.forEach(function(e){ console.error(e); });
+      stats.toJson().errors.forEach(e => { console.error(e); });
       console.log('----------------------------------------------------------');
     } else {
       console.log('Build done at ' + new Date().toString() );
